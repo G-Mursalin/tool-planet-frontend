@@ -1,20 +1,18 @@
 // React
 import React from "react";
-// Components
-import Loading from "../Utilities/Loading";
-import Product from "./Product";
 // React Query
 import { useQuery } from "react-query";
+// Components
+import Loading from "../Utilities/Loading";
+import Product from "../Products/Product";
 
-const Products = () => {
+const Tools = () => {
   const { data: products, isLoading } = useQuery("products", () =>
-    fetch("http://localhost:5000/products").then((res) => res.json())
+    fetch("http://localhost:5000/products?size=3").then((res) => res.json())
   );
-
   if (isLoading) {
     return <Loading />;
   }
-
   return (
     <div>
       <h1 className="mt-20 text-center md:text-5xl text-3xl  font-bold">
@@ -31,4 +29,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Tools;

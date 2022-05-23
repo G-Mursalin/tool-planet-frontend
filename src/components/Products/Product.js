@@ -20,7 +20,7 @@ const Product = ({ product }) => {
         <p>{description}</p>
         <h1 className="text-xl font-bold">Price:{price}</h1>
         <h2>Available: {available_quantity} piece left</h2>
-        <h2> Minimum Order Quantity:{minimum_order_quantity}</h2>
+        <h2>Minimum Order: {minimum_order_quantity} piece</h2>
         <div className="card-actions justify-end mt-3">
           <button className="btn btn-primary">Buy Now</button>
         </div>
