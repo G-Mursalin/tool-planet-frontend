@@ -61,6 +61,8 @@ const Order = () => {
       <OrderForm
         minimum_order_quantity={minimum_order_quantity}
         available_quantity={available_quantity}
+        productName={name}
+        productId={id}
       />
     </section>
   );

@@ -2,6 +2,9 @@
 import { Fragment } from "react";
 // React Routes
 import { Routes, Route } from "react-router-dom";
+// React Toast
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // Components
 import Home from "./components/Home/Home";
 import NavBar from "./components/NavBar/NavBar";
@@ -29,6 +32,7 @@ function App() {
           }
         />
       </Routes>
+      <ToastContainer position="bottom-right" autoClose={3000} />
     </Fragment>
   );
 }

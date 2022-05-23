@@ -4,7 +4,13 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../Authentication/Firebase/firebase.init";
 import { useState } from "react";
-const OrderForm = ({ minimum_order_quantity, available_quantity }) => {
+import { toast } from "react-toastify";
+const OrderForm = ({
+  minimum_order_quantity,
+  available_quantity,
+  productName,
+  productId,
+}) => {
   const [user] = useAuthState(auth);
   const [quantityError, setQuantityError] = useState("");
 
@@ -28,7 +34,34 @@ const OrderForm = ({ minimum_order_quantity, available_quantity }) => {
   };
 
   const handleOrder = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
+    const orderDetails = {
+      customerName: e.target.name.value,
+      customerEmail: e.target.email.value,
+      phone: e.target.phone.value,
+      productName: productName,
+      productId: productId,
+      quantity: e.target.quantity.value,
+      address: e.target.address.value,
+    };
+
+    // Send data to server
+    fetch("http://localhost:5000/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orderDetails),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success(data.info);
+        } else {
+          toast.warn(data.info);
+        }
+      });
+    e.target.reset();
   };
   return (
     <section className="text-gray-600 body-font relative ">
@@ -117,14 +150,14 @@ const OrderForm = ({ minimum_order_quantity, available_quantity }) => {
             <div className="p-2 w-full">
               <div className="relative">
                 <label
-                  htmlFor="message"
+                  htmlFor="address"
                   className="leading-7 text-sm text-gray-600"
                 >
                   Address
                 </label>
                 <textarea
                   id="message"
-                  name="message"
+                  name="address"
                   className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
                 ></textarea>
               </div>
