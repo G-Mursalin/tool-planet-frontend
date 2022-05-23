@@ -1,15 +1,20 @@
+// React
 import React from "react";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+// React Form
 import { useForm } from "react-hook-form";
-import auth from "../Firebase/firebase.init";
-import { useNavigate } from "react-router-dom";
+// Firebase Hook
 import {
   useCreateUserWithEmailAndPassword,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
-import Loading from "../../Utilities/Loading";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import auth from "../Firebase/firebase.init";
+// React router
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+// Components
+import Loading from "../../Utilities/Loading";
+import useToken from "../../UseHook/useToken";
 const SingUp = () => {
   const navigate = useNavigate();
   let showSignInError = "";
@@ -28,6 +33,8 @@ const SingUp = () => {
     await updateProfile({ displayName: data.name });
   };
 
+  const [token] = useToken(user || gUser);
+
   if (error || gError || updateError) {
     showSignInError = (
       <p className="text-red-500 mb-2 text-sm">
@@ -40,7 +47,7 @@ const SingUp = () => {
     return <Loading />;
   }
 
-  if (gUser || user) {
+  if (token) {
     navigate("/");
   }
 

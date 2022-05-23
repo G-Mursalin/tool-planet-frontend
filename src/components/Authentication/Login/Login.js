@@ -11,7 +11,7 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // Components
 import Loading from "../../Utilities/Loading";
-
+import useToken from "../../UseHook/useToken";
 const Login = () => {
   const {
     register,
@@ -25,6 +25,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const [token] = useToken(user || gUser);
 
   if (error || gError) {
     showSignInError = (
@@ -39,7 +40,7 @@ const Login = () => {
   const onSubmit = (data) => {
     signInWithEmailAndPassword(data.email, data.password);
   };
-  if (user || gUser) {
+  if (token) {
     navigate(from, { replace: true });
   }
   return (

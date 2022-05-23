@@ -8,7 +8,8 @@ import NavBar from "./components/NavBar/NavBar";
 import Products from "./components/Products/Products";
 import Login from "./components/Authentication/Login/Login";
 import SignUp from "./components/Authentication/SignUp/SignUp";
-
+import Order from "./components/Order/Order";
+import RequireAuth from "./components/Authentication/RequireAuth/RequireAuth";
 function App() {
   return (
     <Fragment>
@@ -19,6 +20,14 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route
+          path="/order/:id"
+          element={
+            <RequireAuth>
+              <Order />
+            </RequireAuth>
+          }
+        />
       </Routes>
     </Fragment>
   );
