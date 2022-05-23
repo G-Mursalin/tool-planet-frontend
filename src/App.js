@@ -13,6 +13,10 @@ import Login from "./components/Authentication/Login/Login";
 import SignUp from "./components/Authentication/SignUp/SignUp";
 import Order from "./components/Order/Order";
 import RequireAuth from "./components/Authentication/RequireAuth/RequireAuth";
+import Dashboard from "./components/Dashboard/Dashboard";
+import MyOrders from "./components/Dashboard/MyOrders";
+import AddAReviews from "./components/Dashboard/AddAReviews";
+import MyProfile from "./components/Dashboard/MyProfile";
 function App() {
   return (
     <Fragment>
@@ -31,6 +35,11 @@ function App() {
             </RequireAuth>
           }
         />
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route index element={<MyOrders />} />
+          <Route path="add-review" element={<AddAReviews />} />
+          <Route path="my-profile" element={<MyProfile />} />
+        </Route>
       </Routes>
       <ToastContainer position="bottom-right" autoClose={3000} />
     </Fragment>

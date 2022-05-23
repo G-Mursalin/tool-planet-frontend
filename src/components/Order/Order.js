@@ -26,7 +26,7 @@ const Order = () => {
 
   return (
     <section className="md:px-16">
-      <h1 className="mt-20 text-center md:text-5xl text-3xl  font-bold">
+      <h1 className="mt-20 text-center md:text-5xl text-3xl font-bold">
         Product Information
       </h1>
       <div className="text-gray-600 body-font">
