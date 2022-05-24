@@ -73,8 +73,6 @@ const MyProfile = () => {
     return <Loading />;
   }
 
-  console.log(userProfileInfo);
-
   return (
     <section>
       <div>

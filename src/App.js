@@ -20,6 +20,9 @@ import MyProfile from "./components/Dashboard/MyProfile";
 import PageNotFound from "./components/ErrorPages/PageNotFound/PageNotFound";
 import UnAuthorizeAccess from "./components/ErrorPages/UnAuthorizeAccess";
 import ForbiddenAccess from "./components/ErrorPages/ForbiddenAccess";
+import MakeAdmin from "./components/Dashboard/MakeAdmin";
+import RequireAdmin from "./components/Authentication/RequireAdmin/RequireAdmin";
+import AddAProduct from "./components/Dashboard/AddAProduct";
 function App() {
   return (
     <Fragment>
@@ -49,6 +52,22 @@ function App() {
           <Route index element={<MyOrders />} />
           <Route path="add-review" element={<AddAReviews />} />
           <Route path="my-profile" element={<MyProfile />} />
+          <Route
+            path="make-admin"
+            element={
+              <RequireAdmin>
+                <MakeAdmin />
+              </RequireAdmin>
+            }
+          />
+          <Route
+            path="add-product"
+            element={
+              <RequireAdmin>
+                <AddAProduct />
+              </RequireAdmin>
+            }
+          />
         </Route>
         <Route path="*" element={<PageNotFound />} />
         <Route path="/un-authorize-access" element={<UnAuthorizeAccess />} />

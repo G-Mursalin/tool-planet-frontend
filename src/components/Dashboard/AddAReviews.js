@@ -41,6 +41,7 @@ const AddAReviews = () => {
 
   return (
     <section className="text-gray-600 body-font relative">
+      <h2 className="text-2xl mb-3">Add a review</h2>
       <div className="container px-5 py-24 mx-auto">
         <form onSubmit={handleReview} className="lg:w-1/2 md:w-2/3 mx-auto">
           <div className="flex flex-wrap -m-2">
