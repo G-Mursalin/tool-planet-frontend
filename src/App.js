@@ -17,6 +17,9 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import MyOrders from "./components/Dashboard/MyOrders";
 import AddAReviews from "./components/Dashboard/AddAReviews";
 import MyProfile from "./components/Dashboard/MyProfile";
+import PageNotFound from "./components/ErrorPages/PageNotFound/PageNotFound";
+import UnAuthorizeAccess from "./components/ErrorPages/UnAuthorizeAccess";
+import ForbiddenAccess from "./components/ErrorPages/ForbiddenAccess";
 function App() {
   return (
     <Fragment>
@@ -47,6 +50,9 @@ function App() {
           <Route path="add-review" element={<AddAReviews />} />
           <Route path="my-profile" element={<MyProfile />} />
         </Route>
+        <Route path="*" element={<PageNotFound />} />
+        <Route path="/un-authorize-access" element={<UnAuthorizeAccess />} />
+        <Route path="/forbidden-access" element={<ForbiddenAccess />} />
       </Routes>
       <ToastContainer position="bottom-right" autoClose={3000} />
     </Fragment>

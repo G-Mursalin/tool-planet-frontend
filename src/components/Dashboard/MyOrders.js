@@ -6,11 +6,14 @@ import auth from "./../Authentication/Firebase/firebase.init";
 import { signOut } from "firebase/auth";
 // React Query
 import { useQuery } from "react-query";
+// React Route
+import { useNavigate } from "react-router-dom";
 // Components
 import Loading from "../Utilities/Loading";
 
 const MyOrders = () => {
   const [user, ULoading] = useAuthState(auth);
+  const navigate = useNavigate();
   const {
     data: orders,
     isLoading,
@@ -21,9 +24,15 @@ const MyOrders = () => {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     }).then((res) => {
-      if (res.status === 401 || res.status === 403) {
+      if (res.status === 401) {
         localStorage.removeItem("accessToken");
         signOut(auth);
+        navigate("/un-authorize-access");
+      }
+      if (res.status === 403) {
+        localStorage.removeItem("accessToken");
+        signOut(auth);
+        navigate("/forbidden-access");
       }
       return res.json();
     })
