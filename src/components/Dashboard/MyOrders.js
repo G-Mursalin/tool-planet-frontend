@@ -10,9 +10,11 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 // Components
 import Loading from "../Utilities/Loading";
+import DeleteModal from "./DeleteModal";
 
 const MyOrders = () => {
   const [user, ULoading] = useAuthState(auth);
+  const [product, setProduct] = useState(null);
   const navigate = useNavigate();
   const {
     data: orders,
@@ -38,10 +40,25 @@ const MyOrders = () => {
     })
   );
 
+  const handleDelete = () => {
+    fetch(`http://localhost:5000/order/${product._id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          refetch();
+        }
+      });
+  };
+
   if (ULoading || isLoading) {
     return <Loading />;
   }
-  console.log(orders);
+
   return (
     <div>
       <h2 className="text-2xl mb-3">Your total order {orders.length}</h2>
@@ -68,12 +85,25 @@ const MyOrders = () => {
                   <button className="btn btn-xs">Pay Now</button>
                 </td>
                 <td>
-                  <button className="btn btn-xs">cancel order</button>
+                  <label
+                    onClick={() => setProduct(product)}
+                    htmlFor="my-modal-6"
+                    className="btn modal-button btn-xs"
+                  >
+                    cancel order
+                  </label>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        {product && (
+          <DeleteModal
+            product={product}
+            handleDelete={handleDelete}
+            setProduct={setProduct}
+          />
+        )}
       </div>
     </div>
   );
