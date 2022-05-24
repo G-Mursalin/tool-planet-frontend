@@ -4,15 +4,22 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../Authentication/Firebase/firebase.init";
 import { useState } from "react";
+// React Toast
 import { toast } from "react-toastify";
+// Components
+import Loading from "../Utilities/Loading";
 const OrderForm = ({
   minimum_order_quantity,
   available_quantity,
   productName,
   productId,
 }) => {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [quantityError, setQuantityError] = useState("");
+
+  if (loading) {
+    return <Loading />;
+  }
 
   const handleQuantityError = (e) => {
     setQuantityError("");
@@ -50,6 +57,7 @@ const OrderForm = ({
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(orderDetails),
     })

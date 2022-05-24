@@ -8,6 +8,7 @@ const Dashboard = () => {
     <div className="mt-20 md:px-16 drawer drawer-mobile">
       <input id="dashboard" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
+        <h1 className="text-3xl text-primary mb-3">Welcome to dashboard</h1>
         <Outlet />
       </div>
       <div className="drawer-side">
