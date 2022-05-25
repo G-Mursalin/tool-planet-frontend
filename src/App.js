@@ -25,6 +25,7 @@ import RequireAdmin from "./components/Authentication/RequireAdmin/RequireAdmin"
 import AddAProduct from "./components/Dashboard/AddAProduct";
 import ManageProducts from "./components/Dashboard/ManageProducts";
 import ManageAllOrders from "./components/Dashboard/ManageAllOrders";
+import Blogs from "./components/Blogs/Blogs";
 function App() {
   return (
     <Fragment>
@@ -35,6 +36,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/blogs" element={<Blogs />} />
         <Route
           path="/order/:id"
           element={
