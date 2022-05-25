@@ -9,9 +9,13 @@ import { useQuery } from "react-query";
 // Firebase Hook
 import { signOut } from "firebase/auth";
 import auth from "./../Authentication/Firebase/firebase.init";
+import { useAuthState } from "react-firebase-hooks/auth";
 // Components
 import Loading from "../Utilities/Loading";
+import useAdmin from "../UseHook/useAdmin";
 const Reviews = () => {
+  const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user);
   const navigate = useNavigate();
   const { data: reviews, isLoading } = useQuery("reviews", () =>
     fetch("https://gentle-chamber-19518.herokuapp.com/reviews", {
@@ -43,9 +47,11 @@ const Reviews = () => {
         <h1 className="text-center md:text-5xl text-3xl font-bold">Reviews</h1>
         <h2 className="text-center md:text-4xl text-2xl my-6">
           No reviews added yet.&nbsp;
-          <Link to="/dashboard/add-review" className="underline">
-            Add one
-          </Link>
+          {!admin && (
+            <Link to="/dashboard/add-review" className="underline">
+              Add one
+            </Link>
+          )}
         </h2>
       </section>
     );
