@@ -21,11 +21,14 @@ const MyProfile = () => {
     isLoading,
     refetch,
   } = useQuery(["userProfile", user.email], () =>
-    fetch(`http://localhost:5000/userprofile?userEmail=${user.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }).then((res) => {
+    fetch(
+      `https://gentle-chamber-19518.herokuapp.com/userprofile?userEmail=${user.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    ).then((res) => {
       if (res.status === 401) {
         localStorage.removeItem("accessToken");
         signOut(auth);
@@ -51,7 +54,7 @@ const MyProfile = () => {
       phone: e.target.phone.value,
     };
     // Send data to server
-    fetch("http://localhost:5000/userprofile", {
+    fetch("https://gentle-chamber-19518.herokuapp.com/userprofile", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

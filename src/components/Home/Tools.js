@@ -8,7 +8,9 @@ import Product from "../Products/Product";
 
 const Tools = () => {
   const { data: products, isLoading } = useQuery("products", () =>
-    fetch("http://localhost:5000/products?size=3").then((res) => res.json())
+    fetch("https://gentle-chamber-19518.herokuapp.com/products?size=3").then(
+      (res) => res.json()
+    )
   );
   if (isLoading) {
     return <Loading />;

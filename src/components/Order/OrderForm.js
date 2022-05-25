@@ -53,7 +53,7 @@ const OrderForm = ({
     };
 
     // Send data to server
-    fetch("http://localhost:5000/orders", {
+    fetch("https://gentle-chamber-19518.herokuapp.com/orders", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

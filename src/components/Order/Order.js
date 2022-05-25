@@ -10,7 +10,9 @@ import OrderForm from "./OrderForm";
 const Order = () => {
   const { id } = useParams();
   const { data: product, isLoading } = useQuery(["product", id], () =>
-    fetch(`http://localhost:5000/product/${id}`).then((res) => res.json())
+    fetch(`https://gentle-chamber-19518.herokuapp.com/product/${id}`).then(
+      (res) => res.json()
+    )
   );
   if (isLoading) {
     return <Loading />;

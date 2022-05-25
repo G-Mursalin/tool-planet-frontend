@@ -21,11 +21,14 @@ const MyOrders = () => {
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    fetch(`http://localhost:5000/order?email=${user.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }).then((res) => {
+    fetch(
+      `https://gentle-chamber-19518.herokuapp.com/order?email=${user.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    ).then((res) => {
       if (res.status === 401) {
         localStorage.removeItem("accessToken");
         signOut(auth);
@@ -41,7 +44,7 @@ const MyOrders = () => {
   );
 
   const handleDelete = () => {
-    fetch(`http://localhost:5000/order/${product._id}`, {
+    fetch(`https://gentle-chamber-19518.herokuapp.com/order/${product._id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

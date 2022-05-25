@@ -29,7 +29,7 @@ const AddAProduct = () => {
           addedProductInfo.img = result.data.image.url;
         }
         // Send to data base
-        fetch("http://localhost:5000/product", {
+        fetch("https://gentle-chamber-19518.herokuapp.com/product", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

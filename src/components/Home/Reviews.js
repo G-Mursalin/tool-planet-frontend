@@ -14,7 +14,7 @@ import Loading from "../Utilities/Loading";
 const Reviews = () => {
   const navigate = useNavigate();
   const { data: reviews, isLoading } = useQuery("reviews", () =>
-    fetch("http://localhost:5000/reviews", {
+    fetch("https://gentle-chamber-19518.herokuapp.com/reviews", {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
