@@ -27,6 +27,7 @@ import ManageProducts from "./components/Dashboard/ManageProducts";
 import ManageAllOrders from "./components/Dashboard/ManageAllOrders";
 import Blogs from "./components/Blogs/Blogs";
 import MyPortfolio from "./components/MyPortfolio/MyPortfolio";
+import Footer from "./components/Footer/Footer";
 function App() {
   return (
     <Fragment>
@@ -95,6 +96,7 @@ function App() {
         <Route path="/un-authorize-access" element={<UnAuthorizeAccess />} />
         <Route path="/forbidden-access" element={<ForbiddenAccess />} />
       </Routes>
+      <Footer />
       <ToastContainer position="bottom-right" autoClose={3000} />
     </Fragment>
   );

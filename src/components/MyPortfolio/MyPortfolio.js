@@ -2,7 +2,7 @@ import React from "react";
 
 const MyPortfolio = () => {
   return (
-    <section className="mt-20 px-16">
+    <section className="my-20 px-16">
       <div>Name: Golam Muralin</div>
       <div>Email Address: golammursalin309@gmail.com</div>
       <div>
