@@ -7,9 +7,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../Authentication/Firebase/firebase.init";
 // Components
 import useAdmin from "../UseHook/useAdmin";
+import Loading from "../Utilities/Loading";
 const Dashboard = () => {
-  const [use] = useAuthState(auth);
-  const [admin] = useAdmin(use);
+  const [use, loading] = useAuthState(auth);
+
+  const [admin, adminLoading] = useAdmin(use);
+  if ((loading, adminLoading)) {
+    return <Loading />;
+  }
   return (
     <div className="mt-20 md:px-16 drawer drawer-mobile">
       <input id="dashboard" type="checkbox" className="drawer-toggle" />
