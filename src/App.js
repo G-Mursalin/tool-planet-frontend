@@ -23,6 +23,8 @@ import ForbiddenAccess from "./components/ErrorPages/ForbiddenAccess";
 import MakeAdmin from "./components/Dashboard/MakeAdmin";
 import RequireAdmin from "./components/Authentication/RequireAdmin/RequireAdmin";
 import AddAProduct from "./components/Dashboard/AddAProduct";
+import ManageProducts from "./components/Dashboard/ManageProducts";
+import ManageAllOrders from "./components/Dashboard/ManageAllOrders";
 function App() {
   return (
     <Fragment>
@@ -65,6 +67,22 @@ function App() {
             element={
               <RequireAdmin>
                 <AddAProduct />
+              </RequireAdmin>
+            }
+          />
+          <Route
+            path="manage-all-orders"
+            element={
+              <RequireAdmin>
+                <ManageAllOrders />
+              </RequireAdmin>
+            }
+          />
+          <Route
+            path="manageProducts"
+            element={
+              <RequireAdmin>
+                <ManageProducts />
               </RequireAdmin>
             }
           />
