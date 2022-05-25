@@ -26,6 +26,7 @@ import AddAProduct from "./components/Dashboard/AddAProduct";
 import ManageProducts from "./components/Dashboard/ManageProducts";
 import ManageAllOrders from "./components/Dashboard/ManageAllOrders";
 import Blogs from "./components/Blogs/Blogs";
+import MyPortfolio from "./components/MyPortfolio/MyPortfolio";
 function App() {
   return (
     <Fragment>
@@ -37,6 +38,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/blogs" element={<Blogs />} />
+        <Route path="/myPortfolio" element={<MyPortfolio />} />
         <Route
           path="/order/:id"
           element={
