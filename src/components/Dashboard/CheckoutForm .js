@@ -13,10 +13,9 @@ const CheckoutForm = ({ payProduct }) => {
   const { price } = payProduct;
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("https://gentle-chamber-19518.herokuapp.com/create-payment-intent", {
+    fetch(" https://gentle-chamber-19518.herokuapp.com/create-payment-intent", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify({ price }),

@@ -62,9 +62,9 @@ const Payment = () => {
       </div>
       <div className="card flex-shrink-0 max-w-md shadow-2xl bg-base-100 mx-auto">
         <div className="card-body">
-          <Elements stripe={stripePromise}>
+          {/* <Elements stripe={stripePromise}>
             <CheckoutForm payProduct={payProduct} />
-          </Elements>
+          </Elements> */}
         </div>
       </div>
     </div>
