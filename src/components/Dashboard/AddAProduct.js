@@ -3,11 +3,16 @@ import React from "react";
 import { useState } from "react";
 // React Tostify
 import { toast } from "react-toastify";
+// React Route
+import { useNavigate } from "react-router-dom";
+// Firebase hook
+import { signOut } from "firebase/auth";
+import auth from "./../Authentication/Firebase/firebase.init";
 
 const AddAProduct = () => {
   const imgStorageKey = "c52e775809a1317e74d6f4056dd40a16";
   const [file, setFile] = useState();
-
+  const navigate = useNavigate();
   const handleAddProduct = (e) => {
     e.preventDefault();
     const addedProductInfo = {
@@ -37,7 +42,19 @@ const AddAProduct = () => {
           },
           body: JSON.stringify(addedProductInfo),
         })
-          .then((response) => response.json())
+          .then((res) => {
+            if (res.status === 401) {
+              localStorage.removeItem("accessToken");
+              signOut(auth);
+              navigate("/un-authorize-access");
+            }
+            if (res.status === 403) {
+              localStorage.removeItem("accessToken");
+              signOut(auth);
+              navigate("/forbidden-access");
+            }
+            return res.json();
+          })
           .then((data) => {
             if (data.success) {
               toast.success(data.info);
