@@ -6,6 +6,7 @@ import Tools from "./Tools";
 import Reviews from "./Reviews";
 import BusinessSummary from "../BusinessSummary/BusinessSummary";
 import Supports from "./Supports";
+import NewsLetter from "./NewsLetter";
 const Home = () => {
   return (
     <>
@@ -14,6 +15,7 @@ const Home = () => {
       <Reviews />
       <BusinessSummary />
       <Supports />
+      <NewsLetter />
     </>
   );
 };
