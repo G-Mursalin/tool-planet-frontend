@@ -7,7 +7,7 @@ import { signOut } from "firebase/auth";
 // React Query
 import { useQuery } from "react-query";
 // React Route
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // Components
 import Loading from "../Utilities/Loading";
 import DeleteModal from "./DeleteModal";
@@ -72,6 +72,7 @@ const MyOrders = () => {
               <th></th>
               <th>Product Name</th>
               <th>Quantity</th>
+              <th>Price</th>
               <th>Phone</th>
               <th></th>
               <th></th>
@@ -83,9 +84,12 @@ const MyOrders = () => {
                 <th>{i + 1}</th>
                 <td>{product.productName}</td>
                 <td>{product.quantity}</td>
+                <td>{product.price}</td>
                 <td>{product.phone}</td>
                 <td>
-                  <button className="btn btn-xs">Pay Now</button>
+                  <Link to={`payment/${product._id}`}>
+                    <button className="btn btn-xs">Pay Now</button>
+                  </Link>
                 </td>
                 <td>
                   <label

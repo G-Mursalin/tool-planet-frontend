@@ -1,12 +1,19 @@
 // React
+
 import React from "react";
 import { useState } from "react";
 // React Query
 import { useQuery } from "react-query";
+// React Route
+import { useNavigate } from "react-router-dom";
 // Components
 import Loading from "./../Utilities/Loading";
 import DeleteProductModel from "./DeleteProductModel";
+// Firebase Hook
+import { signOut } from "firebase/auth";
+import auth from "./../Authentication/Firebase/firebase.init";
 const ManageProducts = () => {
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const {
     data: products,
@@ -30,7 +37,19 @@ const ManageProducts = () => {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401) {
+          localStorage.removeItem("accessToken");
+          signOut(auth);
+          navigate("/un-authorize-access");
+        }
+        if (res.status === 403) {
+          localStorage.removeItem("accessToken");
+          signOut(auth);
+          navigate("/forbidden-access");
+        }
+        return res.json();
+      })
       .then((data) => {
         if (data.deletedCount > 0) {
           refetch();
@@ -46,6 +65,7 @@ const ManageProducts = () => {
           <thead>
             <tr>
               <th></th>
+              <th></th>
               <th>Product Name</th>
               <th>Available Quantity</th>
               <th>Price</th>
@@ -56,6 +76,13 @@ const ManageProducts = () => {
             {products.map((product, i) => (
               <tr key={product._id}>
                 <th>{i + 1}</th>
+                <td>
+                  <div className="avatar">
+                    <div className="w-24 rounded">
+                      <img src={product.img} alt={product.name} />
+                    </div>
+                  </div>
+                </td>
                 <td>{product.name}</td>
                 <td>{product.available_quantity}</td>
                 <td>{product.price}</td>

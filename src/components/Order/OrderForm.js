@@ -13,6 +13,7 @@ const OrderForm = ({
   available_quantity,
   productName,
   productId,
+  price,
 }) => {
   const [user, loading] = useAuthState(auth);
   const [quantityError, setQuantityError] = useState("");
@@ -48,6 +49,7 @@ const OrderForm = ({
       phone: e.target.phone.value,
       productName: productName,
       productId: productId,
+      price: price,
       quantity: e.target.quantity.value,
       address: e.target.address.value,
     };

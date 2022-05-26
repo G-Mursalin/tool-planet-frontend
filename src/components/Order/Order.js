@@ -65,6 +65,7 @@ const Order = () => {
         available_quantity={available_quantity}
         productName={name}
         productId={id}
+        price={price}
       />
     </section>
   );

@@ -28,6 +28,7 @@ import ManageAllOrders from "./components/Dashboard/ManageAllOrders";
 import Blogs from "./components/Blogs/Blogs";
 import MyPortfolio from "./components/MyPortfolio/MyPortfolio";
 import Footer from "./components/Footer/Footer";
+import Payment from "./components/Dashboard/Payment";
 function App() {
   return (
     <Fragment>
@@ -58,6 +59,7 @@ function App() {
         >
           <Route index element={<MyOrders />} />
           <Route path="add-review" element={<AddAReviews />} />
+          <Route path="payment/:id" element={<Payment />} />
           <Route path="my-profile" element={<MyProfile />} />
           <Route
             path="make-admin"
