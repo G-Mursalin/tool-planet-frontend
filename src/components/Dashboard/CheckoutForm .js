@@ -3,7 +3,7 @@ import { signOut } from "firebase/auth";
 import React, { Fragment, useState, useEffect } from "react";
 import auth from "../Authentication/Firebase/firebase.init";
 import { useNavigate } from "react-router-dom";
-
+// Private repo to public repo
 const CheckoutForm = ({ payProduct }) => {
   const stripe = useStripe();
   const navigate = useNavigate();
