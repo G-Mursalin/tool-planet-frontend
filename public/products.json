@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Wrench",
+    "img": "https://i.ibb.co/sbdm1hM/wrench.jpg",
+    "price": "193.64",
+    "description": "A wrench or spanner is a tool used to provide grip and mechanical advantage in applying torque to turn objects—usually rotary fasteners, such as nuts and bolts—or keep them from turning",
+    "available_quantity": "6000",
+    "minimum_order_quantity": "100"
+  },
+  {
+    "name": "Mini Air Die Grinder",
+    "img": "https://i.ibb.co/LxMSZ9g/Mini-Air-Die-Grinder.jpg",
+    "price": "23.99",
+    "description": "Die grinder is a simple yet powerful tool that is traditionally used to grind the metal. This tool is very versatile and can be used to grind almost any material",
+    "available_quantity": "1000",
+    "minimum_order_quantity": "30"
+  },
+  {
+    "name": "Screwdriver",
+    "img": "https://i.ibb.co/Rh4s2hr/Screwdriver.jpg",
+    "price": "9.99",
+    "description": "A screwdriver is a tool, manual or powered, used for driving screws. A typical simple screwdriver has a handle and a shaft, ending in a tip the user puts into the screw head before turning the handle",
+    "available_quantity": "6000",
+    "minimum_order_quantity": "300"
+  },
+  {
+    "name": "Hose Clamp Plier",
+    "img": "https://i.ibb.co/zmb6QzG/Hose-Clamp-Plier.jpg",
+    "price": "19.99",
+    "description": "Spring steel (Corbin) style hose clamps are commonly used to secure rubber hoses within an engine bay",
+    "available_quantity": "5000",
+    "minimum_order_quantity": "50"
+  },
+  {
+    "name": "Precision Oiler",
+    "img": "https://i.ibb.co/2NZ1vv8/Precision-Oiler.jpg",
+    "price": "9.99",
+    "description": "Precision Oiler in high quality standard with transparent reservoir and sealing cap for accurate dispense of single drops of oil",
+    "available_quantity": "10000",
+    "minimum_order_quantity": "100"
+  },
+  {
+    "name": "Titanium Step Drill Bit",
+    "img": "https://i.ibb.co/hggMQKD/Titanium-Step-Drill-Bit.jpg",
+    "price": "5.99",
+    "description": "Titanium bits are suitable for drilling iron, steel, aluminum, magnesium, and wood. Titanium bits are great for general purpose drilling in a production environment because they drill quickly",
+    "available_quantity": "15000",
+    "minimum_order_quantity": "150"
+  }
+]

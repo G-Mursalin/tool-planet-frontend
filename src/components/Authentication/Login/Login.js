@@ -55,6 +55,7 @@ const Login = () => {
               </label>
               <input
                 type="email"
+                value="admin@gmail.com"
                 placeholder="Email"
                 className="input input-bordered w-full focus:border-primary focus:outline-none"
                 {...register("email", {
@@ -87,6 +88,7 @@ const Login = () => {
               </label>
               <input
                 type="password"
+                value="123456"
                 placeholder="Password"
                 className="input input-bordered w-full focus:border-primary focus:outline-none"
                 {...register("password", {
