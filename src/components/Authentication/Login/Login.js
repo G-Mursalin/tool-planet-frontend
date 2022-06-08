@@ -51,11 +51,10 @@ const Login = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text">Email(admin@gmail.com)</span>
               </label>
               <input
                 type="email"
-                value="admin@gmail.com"
                 placeholder="Email"
                 className="input input-bordered w-full focus:border-primary focus:outline-none"
                 {...register("email", {
@@ -84,11 +83,10 @@ const Login = () => {
             </div>
             <div className="form-control w-full ">
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="label-text">Password(123456)</span>
               </label>
               <input
                 type="password"
-                value="123456"
                 placeholder="Password"
                 className="input input-bordered w-full focus:border-primary focus:outline-none"
                 {...register("password", {
