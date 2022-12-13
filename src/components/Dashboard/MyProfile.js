@@ -22,7 +22,7 @@ const MyProfile = () => {
     refetch,
   } = useQuery(["userProfile", user.email], () =>
     fetch(
-      `https://gentle-chamber-19518.herokuapp.com/userprofile?userEmail=${user.email}`,
+      ` https://tool-planet.onrender.com/userprofile?userEmail=${user.email}`,
       {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -54,7 +54,7 @@ const MyProfile = () => {
       phone: e.target.phone.value,
     };
     // Send data to server
-    fetch("https://gentle-chamber-19518.herokuapp.com/userprofile", {
+    fetch(" https://tool-planet.onrender.com/userprofile", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

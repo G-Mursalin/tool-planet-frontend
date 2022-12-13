@@ -8,7 +8,7 @@ import { useQuery } from "react-query";
 
 const Products = () => {
   const { data: products, isLoading } = useQuery("products", () =>
-    fetch("https://gentle-chamber-19518.herokuapp.com/products", {
+    fetch(" https://tool-planet.onrender.com/products", {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },

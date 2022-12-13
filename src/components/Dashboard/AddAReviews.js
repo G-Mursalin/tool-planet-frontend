@@ -22,7 +22,7 @@ const AddAReviews = () => {
       message: e.target.message.value,
     };
     // Send data to server
-    fetch("https://gentle-chamber-19518.herokuapp.com/reviews", {
+    fetch(" https://tool-planet.onrender.com/reviews", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -21,14 +21,11 @@ const MyOrders = () => {
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    fetch(
-      `https://gentle-chamber-19518.herokuapp.com/order?email=${user.email}`,
-      {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }
-    ).then((res) => {
+    fetch(` https://tool-planet.onrender.com/order?email=${user.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }).then((res) => {
       if (res.status === 401) {
         localStorage.removeItem("accessToken");
         signOut(auth);
@@ -44,7 +41,7 @@ const MyOrders = () => {
   );
 
   const handleDelete = () => {
-    fetch(`https://gentle-chamber-19518.herokuapp.com/order/${product._id}`, {
+    fetch(` https://tool-planet.onrender.com/order/${product._id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -86,19 +83,27 @@ const MyOrders = () => {
                 <td>{product.quantity}</td>
                 <td>{product.price}</td>
                 <td>{product.phone}</td>
+                {product.transactionId ? (
+                  <td>Transaction ID: {product.transactionId}</td>
+                ) : (
+                  <td>
+                    <Link to={`payment/${product._id}`}>
+                      <button className="btn btn-xs">Pay Now</button>
+                    </Link>
+                  </td>
+                )}
                 <td>
-                  <Link to={`payment/${product._id}`}>
-                    <button className="btn btn-xs">Pay Now</button>
-                  </Link>
-                </td>
-                <td>
-                  <label
-                    onClick={() => setProduct(product)}
-                    htmlFor="my-modal-6"
-                    className="btn modal-button btn-xs"
-                  >
-                    cancel order
-                  </label>
+                  {product.transactionId ? (
+                    ""
+                  ) : (
+                    <label
+                      onClick={() => setProduct(product)}
+                      htmlFor="my-modal-6"
+                      className="btn modal-button btn-xs"
+                    >
+                      cancel order
+                    </label>
+                  )}
                 </td>
               </tr>
             ))}

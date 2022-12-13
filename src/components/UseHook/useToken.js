@@ -7,7 +7,7 @@ const useToken = (user) => {
 
     const currentUser = { email };
     if (email) {
-      fetch(`https://gentle-chamber-19518.herokuapp.com/user/${email}`, {
+      fetch(` https://tool-planet.onrender.com/user/${email}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

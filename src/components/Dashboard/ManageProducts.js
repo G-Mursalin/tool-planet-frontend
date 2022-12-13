@@ -20,7 +20,7 @@ const ManageProducts = () => {
     isLoading,
     refetch,
   } = useQuery("products", () =>
-    fetch("https://gentle-chamber-19518.herokuapp.com/products", {
+    fetch(" https://tool-planet.onrender.com/products", {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
@@ -31,7 +31,7 @@ const ManageProducts = () => {
     return <Loading />;
   }
   const handleProductDelete = () => {
-    fetch(`https://gentle-chamber-19518.herokuapp.com/product/${product._id}`, {
+    fetch(` https://tool-planet.onrender.com/product/${product._id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

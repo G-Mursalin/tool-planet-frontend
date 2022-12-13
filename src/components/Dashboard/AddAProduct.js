@@ -34,7 +34,7 @@ const AddAProduct = () => {
           addedProductInfo.img = result.data.image.url;
         }
         // Send to data base
-        fetch("https://gentle-chamber-19518.herokuapp.com/product", {
+        fetch(" https://tool-planet.onrender.com/product", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

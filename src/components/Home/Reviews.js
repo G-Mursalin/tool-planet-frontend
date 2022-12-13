@@ -18,7 +18,7 @@ const Reviews = () => {
   const [admin] = useAdmin(user);
   const navigate = useNavigate();
   const { data: reviews, isLoading } = useQuery("reviews", () =>
-    fetch("https://gentle-chamber-19518.herokuapp.com/reviews", {
+    fetch(" https://tool-planet.onrender.com/reviews", {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },

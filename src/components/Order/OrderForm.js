@@ -55,7 +55,7 @@ const OrderForm = ({
     };
 
     // Send data to server
-    fetch("https://gentle-chamber-19518.herokuapp.com/orders", {
+    fetch(" https://tool-planet.onrender.com/orders", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

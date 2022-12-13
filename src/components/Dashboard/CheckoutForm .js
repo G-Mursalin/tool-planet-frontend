@@ -9,13 +9,18 @@ const CheckoutForm = ({ payProduct }) => {
   const navigate = useNavigate();
   const elements = useElements();
   const [cardError, setCardError] = useState("");
+  const [processing, setProcessing] = useState(false);
+  const [transactionId, setTransactionId] = useState("");
+  const [success, setSuccess] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  const { price } = payProduct;
+  const { price, productName, _id } = payProduct;
+
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch(" https://gentle-chamber-19518.herokuapp.com/create-payment-intent", {
+    fetch("  https://tool-planet.onrender.com/create-payment-intent", {
       method: "POST",
       headers: {
+        "Content-type": "application/json",
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify({ price }),
@@ -42,20 +47,68 @@ const CheckoutForm = ({ payProduct }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!stripe || !elements) {
       return;
     }
+
     const card = elements.getElement(CardElement);
+
     if (card == null) {
       return;
     }
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
 
     setCardError(error?.message || "");
+    setSuccess("");
+    //confirm card payment
+    const { paymentIntent, error: intentError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: productName,
+          },
+        },
+      });
+
+    if (intentError) {
+      setCardError(intentError?.message);
+    } else {
+      setCardError("");
+      setTransactionId(paymentIntent.id);
+      setSuccess("Congrats! your payment is completed.");
+
+      // Update payment to database
+      const payment = {
+        transactionId: paymentIntent.id,
+        productId: _id,
+      };
+      setProcessing(true);
+      fetch(` https://tool-planet.onrender.com/booking/${_id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify(payment),
+      })
+        .then((res) => {
+          if (res.status === 401 || res.status === 403) {
+            navigate("/");
+            signOut(auth);
+            localStorage.removeItem("accessToken");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          setProcessing(false);
+        });
+    }
   };
 
   return (
@@ -77,10 +130,19 @@ const CheckoutForm = ({ payProduct }) => {
             },
           }}
         />
+        {cardError && <p className="mt-3 text-red-500">{cardError}</p>}
+        {success && (
+          <p className="mt-3 text-green-500">
+            {success}
+            <span className="block font-bold">Your Transaction ID:</span>
+            {transactionId}
+          </p>
+        )}
+        {processing ? "Loading..." : ""}
         <button
           type="submit"
           className="btn btn-primary btn-sm mt-4"
-          disabled={!stripe || !clientSecret}
+          disabled={!stripe || !clientSecret || success}
         >
           Pay
         </button>

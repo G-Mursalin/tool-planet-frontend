@@ -8,8 +8,8 @@ import Product from "../Products/Product";
 
 const Tools = () => {
   const { data: products, isLoading } = useQuery("products", () =>
-    fetch("https://gentle-chamber-19518.herokuapp.com/products?size=3").then(
-      (res) => res.json()
+    fetch(" https://tool-planet.onrender.com/products?size=3").then((res) =>
+      res.json()
     )
   );
   if (isLoading) {

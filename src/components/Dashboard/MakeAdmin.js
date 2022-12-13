@@ -20,7 +20,7 @@ const MakeAdmin = () => {
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    fetch("https://gentle-chamber-19518.herokuapp.com/users", {
+    fetch(" https://tool-planet.onrender.com/users", {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
@@ -40,7 +40,7 @@ const MakeAdmin = () => {
   );
   //   Make Admin
   const makeAdmin = (email) => {
-    fetch(`https://gentle-chamber-19518.herokuapp.com/user/admin/${email}`, {
+    fetch(` https://tool-planet.onrender.com/user/admin/${email}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
